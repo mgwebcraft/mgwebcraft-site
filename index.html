@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MGWebCraft — Bienvenido</title>
+  <title>MGWebCraft — Donde las ideas se vuelven sitios</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Favicon (reemplaza favicon.png por tu icono pequeño) -->
+  <!-- Favicon (sube favicon.png en tu repo) -->
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- EmailJS (librería) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
     :root{
       --bg:#0B0D10;
       --gold:#d4af37;
       --gold-bright:#ffd86b;
+      --muted: rgba(212,175,55,0.12);
       --card:#0f1113;
+      --text-muted: rgba(212,175,55,0.9);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;padding:0;background:var(--bg);font-family:'Montserrat',sans-serif;color:var(--gold);-webkit-font-smoothing:antialiased}
     .wrap{
@@ -33,150 +37,88 @@
     }
 
     /* Logo central */
-    .logo{
-      width:190px;
-      height:auto;
-      animation:fadeUp 1100ms cubic-bezier(.2,.9,.2,1) both;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
-      border-radius:12px;
-    }
-
-    h1{
-      margin:6px 0 0 0;
-      font-weight:800;
-      line-height:1.08;
-      font-size:1.9rem;
-      letter-spacing:-0.4px;
-      background: linear-gradient(90deg,var(--gold),var(--gold-bright));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:0 2px 6px rgba(0,0,0,0.5);
-      animation:fadeUp 1300ms cubic-bezier(.2,.9,.2,1) both;
-    }
-
-    .subtitle{
-      max-width:760px;
-      margin:6px 0 0 0;
-      font-size:1.05rem;
-      color:rgba(212,175,55,0.95);
-      animation:fadeUp 1500ms cubic-bezier(.2,.9,.2,1) both;
-    }
-
-    .call{
-      margin-top:6px;
-      font-weight:600;
-      font-size:1rem;
-      color:var(--gold);
-      animation:fadeUp 1700ms cubic-bezier(.2,.9,.2,1) both;
-    }
+    .logo{width:190px;height:auto;animation:fadeUp 1100ms cubic-bezier(.2,.9,.2,1) both;filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));border-radius:12px}
+    h1{margin:6px 0 0 0;font-weight:800;line-height:1.08;font-size:1.9rem;letter-spacing:-0.4px;background: linear-gradient(90deg,var(--gold),var(--gold-bright));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 6px rgba(0,0,0,0.5);animation:fadeUp 1300ms cubic-bezier(.2,.9,.2,1) both}
+    .subtitle{max-width:760px;margin:6px 0 0 0;font-size:1.05rem;color:var(--text-muted);animation:fadeUp 1500ms cubic-bezier(.2,.9,.2,1) both}
+    .call{margin-top:6px;font-weight:600;font-size:1rem;color:var(--gold);animation:fadeUp 1700ms cubic-bezier(.2,.9,.2,1) both}
 
     /* Contact row */
-    .contact{
-      margin-top:20px;
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-      animation:fadeUp 1900ms cubic-bezier(.2,.9,.2,1) both;
-    }
+    .contact{margin-top:20px;display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;animation:fadeUp 1900ms cubic-bezier(.2,.9,.2,1) both}
+    .icon-btn{display:flex;gap:10px;align-items:center;background:transparent;border:1px solid var(--muted);padding:10px 16px;border-radius:12px;color:var(--gold);text-decoration:none;transition:transform .18s ease,background .18s ease,box-shadow .18s ease;backdrop-filter: blur(2px)}
+    .icon-btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(212,175,55,0.06);background:linear-gradient(180deg, rgba(212,175,55,0.04), rgba(212,175,55,0.02))}
+    .icon-wrap{width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04));box-shadow:0 6px 18px rgba(0,0,0,0.5) inset}
+    .icon-svg{width:20px;height:20px;fill:var(--gold)}
+    .contact .text{font-size:0.98rem;color:var(--gold);font-weight:600}
 
-    .icon-btn{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      background:transparent;
-      border:1px solid rgba(212,175,55,0.12);
-      padding:10px 16px;
-      border-radius:12px;
-      color:var(--gold);
-      text-decoration:none;
-      transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
-      backdrop-filter: blur(2px);
-    }
-
-    .icon-btn:hover{
-      transform:translateY(-4px);
-      box-shadow:0 10px 30px rgba(212,175,55,0.06);
-      background:linear-gradient(180deg, rgba(212,175,55,0.04), rgba(212,175,55,0.02));
-    }
-
-    .icon-wrap{
-      width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04));
-      box-shadow:0 6px 18px rgba(0,0,0,0.5) inset;
-    }
-
-    .icon-svg{width:20px;height:20px;fill:var(--gold);}
-
-    .contact .text{
-      font-size:0.98rem;color:var(--gold);font-weight:600;
-    }
-
-    /* Términos button final */
-    .terms-btn{
-      margin-top:28px;
-      border:2px solid var(--gold);
-      background:transparent;
-      color:var(--gold);
-      padding:10px 22px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:700;
-      transition:all .18s ease;
-    }
-
+    .terms-btn{margin-top:28px;border:2px solid var(--gold);background:transparent;color:var(--gold);padding:10px 22px;border-radius:10px;cursor:pointer;font-weight:700;transition:all .18s ease}
     .terms-btn:hover{background:var(--gold);color:var(--bg);transform:scale(1.03)}
 
-    footer{
-      margin-top:36px;color:rgba(212,175,55,0.14);font-size:0.86rem;
+    footer{margin-top:36px;color:rgba(212,175,55,0.14);font-size:0.86rem}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ---------------- Formulario multi-step ---------------- */
+    .form-wrap{
+      margin-top:30px;
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(212,175,55,0.06);
+      padding:22px;
+      border-radius:12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
 
-    /* Animations */
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(22px)}
-      to{opacity:1;transform:translateY(0)}
+    .progress{
+      height:10px;
+      background:rgba(255,255,255,0.03);
+      border-radius:8px;
+      overflow:hidden;
+      margin-bottom:18px;
     }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg,var(--gold),var(--gold-bright));
+      transition: width .45s ease;
+    }
+
+    .step{
+      display:none;
+      animation:fadeUp 500ms ease both;
+    }
+    .step.active{display:block}
+
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;text-align:left;color:var(--text-muted)}
+    .field label{font-weight:600;font-size:0.95rem}
+    .field input[type="text"], .field input[type="email"], .field textarea, .field select{
+      padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--gold);outline:none;font-size:0.95rem
+    }
+    .field textarea{min-height:100px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .row .field{flex:1}
+
+    .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}
+    .btn{padding:10px 16px;border-radius:8px;border:1px solid rgba(212,175,55,0.08);background:transparent;color:var(--gold);cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--gold),var(--gold-bright));color:var(--bg);border:none}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.03)}
+    .btn:disabled{opacity:0.5;cursor:not-allowed}
+
+    .success-msg{padding:12px 16px;border-radius:8px;background:rgba(34,139,34,0.08);border:1px solid rgba(34,139,34,0.12);color:#c8f7c5;margin-top:12px}
 
     /* Modal (pantalla completa con scroll interno) */
-    .modal{
-      display:none;
-      position:fixed;inset:0;z-index:1200;align-items:center;justify-content:center;
-      background:linear-gradient(180deg, rgba(2,2,2,0.6), rgba(2,2,2,0.8));
-      backdrop-filter: blur(6px);
-      padding:28px;
-    }
-
+    .modal{display:none;position:fixed;inset:0;z-index:1200;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,2,2,0.6), rgba(2,2,2,0.8));backdrop-filter: blur(6px);padding:28px}
     .modal.show{display:flex}
-
-    .modal-card{
-      width:100%;max-width:980px;background:var(--card);border:1px solid rgba(212,175,55,0.15);
-      border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6);overflow:hidden;
-      display:flex;flex-direction:column;height:86vh;
-    }
-
-    .modal-head{
-      padding:18px 22px;border-bottom:1px solid rgba(212,175,55,0.04);display:flex;align-items:center;justify-content:space-between;
-    }
-
-    .modal-head h2{margin:0;font-size:1.15rem;color:var(--gold);}
-
-    .close-btn{
-      background:transparent;border:none;color:var(--gold);font-size:22px;cursor:pointer;padding:8px 12px;border-radius:8px;
-    }
-    .close-btn:hover{color:var(--gold-bright);background:rgba(255,216,107,0.03)}
-
-    .modal-body{
-      padding:22px 28px;overflow-y:auto;color:rgba(212,175,55,0.95);font-size:0.98rem;line-height:1.55;
-    }
-
+    .modal-card{width:100%;max-width:980px;background:var(--card);border:1px solid rgba(212,175,55,0.15);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6);overflow:hidden;display:flex;flex-direction:column;height:86vh}
+    .modal-head{padding:18px 22px;border-bottom:1px solid rgba(212,175,55,0.04);display:flex;align-items:center;justify-content:space-between}
+    .modal-head h2{margin:0;font-size:1.15rem;color:var(--gold)}
+    .close-btn{background:transparent;border:none;color:var(--gold);font-size:22px;cursor:pointer;padding:8px 12px;border-radius:8px}
+    .modal-body{padding:22px 28px;overflow-y:auto;color:rgba(212,175,55,0.95);font-size:0.98rem;line-height:1.55}
     .modal-body h3{color:var(--gold);margin-top:18px;margin-bottom:8px}
 
-    /* Responsive */
-    @media (max-width:640px){
-      h1{font-size:1.4rem}
+    @media (max-width:820px){
+      .row{flex-direction:column}
       .logo{width:150px}
-      .modal-body{padding:18px}
       .modal-card{height:84vh}
     }
   </style>
@@ -184,43 +126,137 @@
 <body>
   <main class="wrap" role="main" aria-labelledby="welcomeTitle">
 
-    <!-- Logo: reemplaza logo.png con tu archivo -->
+    <!-- Logo (subir logo.png al repo) -->
     <img src="logo.png" alt="MGWebCraft logo" class="logo" id="logo">
 
     <h1 id="welcomeTitle">Bienvenido a MGWebCraft.<br>Donde las ideas de tu negocio se convierten en sitios web reales.</h1>
 
     <p class="subtitle">Solo dinos quién eres, qué haces y qué te hace especial — nosotros nos encargamos del resto.</p>
-
     <p class="call"><strong>Tu presencia online empieza aquí!</strong></p>
 
-    <!-- Contact row: icon + texto -->
+    <!-- Contact row -->
     <div class="contact" role="region" aria-label="Contactos">
-      <!-- WhatsApp -->
       <a class="icon-btn" href="https://wa.me/526567471956" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <span class="icon-wrap" aria-hidden="true">
-          <!-- WhatsApp SVG -->
-          <svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 48C141.1 48 48 141.1 48 256c0 45 12 86.8 33.6 123.6L32 448l71.1-15.8C150.9 433.9 202.8 448 256 448 370.9 448 464 354.9 464 240S370.9 48 256 48zm116 296.5c-5.7 15.9-32.4 32.1-44.6 34.1-11.9 1.9-28.6 2.7-85.4-19.3-68.7-24.9-112.6-86.8-116-91.7-3.4-4.8-28.3-40.9-28.3-78.1 0-37.3 19.8-55.7 26.8-63.4 6.9-7.7 15.2-9.8 20.8-9.8 5.4 0 10.9.1 15.7.2 5 .1 11.6-1.9 18 13.9 6.4 15.8 21.6 54.6 23.6 58.6 2 4 3.3 8.8 0 14.1-3.4 5.4-5.1 8.8-10 14-4.9 5.3-10.1 9.5-6.8 15.9 3.3 6.4 14.6 23.8 31.2 38.2 16.7 14.4 29.6 18.6 46.3 13 .7-.2 3.9-1.1 8.6-2.8 9.1-3.3 54.3-25 63.6-27.8 9.3-2.8 15.6-4.2 17.9-6.6 2.3-2.4 2.3-5.6 1.6-8.1-0.7-2.5-4.1-8.3-6.6-12.1z"/></svg>
-        </span>
+        <span class="icon-wrap" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 48C141.1 48 48 141.1 48 256c0 45 12 86.8 33.6 123.6L32 448l71.1-15.8C150.9 433.9 202.8 448 256 448 370.9 448 464 354.9 464 240S370.9 48 256 48zm116 296.5c-5.7 15.9-32.4 32.1-44.6 34.1-11.9 1.9-28.6 2.7-85.4-19.3-68.7-24.9-112.6-86.8-116-91.7-3.4-4.8-28.3-40.9-28.3-78.1 0-37.3 19.8-55.7 26.8-63.4 6.9-7.7 15.2-9.8 20.8-9.8 5.4 0 10.9.1 15.7.2 5 .1 11.6-1.9 18 13.9 6.4 15.8 21.6 54.6 23.6 58.6 2 4 3.3 8.8 0 14.1-3.4 5.4-5.1 8.8-10 14-4.9 5.3-10.1 9.5-6.8 15.9 3.3 6.4 14.6 23.8 31.2 38.2 16.7 14.4 29.6 18.6 46.3 13 .7-.2 3.9-1.1 8.6-2.8 9.1-3.3 54.3-25 63.6-27.8 9.3-2.8 15.6-4.2 17.9-6.6 2.3-2.4 2.3-5.6 1.6-8.1-0.7-2.5-4.1-8.3-6.6-12.1z"/></svg></span>
         <span class="text">+52 656 747 1956</span>
       </a>
 
-      <!-- Instagram -->
       <a class="icon-btn" href="https://www.instagram.com/mgwebcraft?igsh=eTI3d2Z1YzlnY3Vh" target="_blank" rel="noopener" aria-label="Instagram">
-        <span class="icon-wrap" aria-hidden="true">
-          <!-- Instagram SVG -->
-          <svg class="icon-svg" viewBox="0 0 169.063 169.063" xmlns="http://www.w3.org/2000/svg"><path d="M122.406 0H46.657C20.924 0 0 20.924 0 46.657v75.749c0 25.733 20.924 46.657 46.657 46.657h75.749c25.733 0 46.657-20.924 46.657-46.657V46.657C169.063 20.924 148.139 0 122.406 0zm-37.203 129.125c-21.171 0-38.38-17.209-38.38-38.38 0-21.172 17.209-38.381 38.38-38.381 21.171 0 38.38 17.209 38.38 38.381 0 21.171-17.209 38.38-38.38 38.38zm38.706-71.3c-4.953 0-8.969-4.016-8.969-8.969 0-4.953 4.016-8.968 8.969-8.968 4.953 0 8.968 4.015 8.968 8.968 0 4.953-4.015 8.969-8.968 8.969z"/></svg>
-        </span>
+        <span class="icon-wrap" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 169.063 169.063" xmlns="http://www.w3.org/2000/svg"><path d="M122.406 0H46.657C20.924 0 0 20.924 0 46.657v75.749c0 25.733 20.924 46.657 46.657 46.657h75.749c25.733 0 46.657-20.924 46.657-46.657V46.657C169.063 20.924 148.139 0 122.406 0zm-37.203 129.125c-21.171 0-38.38-17.209-38.38-38.38 0-21.172 17.209-38.381 38.38-38.381 21.171 0 38.38 17.209 38.38 38.381 0 21.171-17.209 38.38-38.38 38.38zm38.706-71.3c-4.953 0-8.969-4.016-8.969-8.969 0-4.953 4.016-8.968 8.969-8.968 4.953 0 8.968 4.015 8.968 8.968 0 4.953-4.015 8.969-8.968 8.969z"/></svg></span>
         <span class="text">@mgwebcraft</span>
       </a>
 
-      <!-- Email -->
       <a class="icon-btn" href="mailto:mgwebcraft@gmail.com" aria-label="Email">
-        <span class="icon-wrap" aria-hidden="true">
-          <!-- Mail SVG -->
-          <svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M467 61H45C20.186 61 0 81.186 0 106v300c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V106c0-24.814-20.186-45-45-45zM256 291L45 123h422L256 291z"/></svg>
-        </span>
+        <span class="icon-wrap" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M467 61H45C20.186 61 0 81.186 0 106v300c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V106c0-24.814-20.186-45-45-45zM256 291L45 123h422L256 291z"/></svg></span>
         <span class="text">mgwebcraft@gmail.com</span>
       </a>
+    </div>
+
+    <!-- FORMULARIO MULTI-STEP -->
+    <div class="form-wrap" aria-live="polite">
+      <div class="progress" aria-hidden="true"><div id="progressBar" style="width:0%"></div></div>
+
+      <form id="mgForm">
+        <!-- STEP 1 -->
+        <div class="step active" data-step="1">
+          <div class="row">
+            <div class="field">
+              <label for="name">Nombre / Empresa</label>
+              <input id="name" name="name" type="text" required placeholder="Tu nombre o el de la empresa">
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" required placeholder="correo@ejemplo.com">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" type="text" placeholder="+52 656 ...">
+            </div>
+            <div class="field">
+              <label for="website">Tienes sitio web?</label>
+              <select id="website" name="website">
+                <option value="no">No</option>
+                <option value="si">Sí</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn ghost" id="next1">Siguiente →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" data-step="2">
+          <div class="field">
+            <label for="desc">Describe tu negocio (breve)</label>
+            <textarea id="desc" name="desc" placeholder="Qué haces, a quién sirves, qué te hace especial?"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="goal">Objetivo principal del sitio</label>
+              <select id="goal" name="goal">
+                <option value="ventas">Ventas</option>
+                <option value="portafolio">Portafolio</option>
+                <option value="informacion">Información</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pages">Cuántas páginas aproximadas</label>
+              <select id="pages" name="pages">
+                <option value="1-3">1-3</option>
+                <option value="4-8">4-8</option>
+                <option value="9+">9+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn ghost" id="prev2">← Atrás</button>
+            <button type="button" class="btn ghost" id="next2">Siguiente →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" data-step="3">
+          <div class="field">
+            <label for="features">Funcionalidades que quieres</label>
+            <textarea id="features" name="features" placeholder="Ej: Tienda, reservas, blog, contacto con WhatsApp, etc."></textarea>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="budget">Rango de presupuesto</label>
+              <select id="budget" name="budget">
+                <option value="$300-$700">$300 - $700</option>
+                <option value="$700-$1500">$700 - $1,500</option>
+                <option value="$1500+">$1,500+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="deadline">¿Tienes fecha límite?</label>
+              <input id="deadline" name="deadline" type="text" placeholder="Ej: 30/06/2026 (opcional)">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="files">¿Tienes logos o archivos? (link o descripción)</label>
+            <input id="files" name="files" type="text" placeholder="Link a Drive, Dropbox o descripción">
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn ghost" id="prev3">← Atrás</button>
+            <button type="submit" class="btn primary" id="submitBtn">Enviar solicitud</button>
+          </div>
+
+          <div id="formMsg" aria-live="polite"></div>
+        </div>
+      </form>
     </div>
 
     <button class="terms-btn" id="openTerms">Términos de Servicio</button>
@@ -228,7 +264,7 @@
     <footer aria-hidden="false">© 2025 MGWebCraft — Todos los derechos reservados.</footer>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal Términos -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card" role="document">
       <div class="modal-head">
@@ -236,7 +272,6 @@
         <button class="close-btn" id="closeModal" aria-label="Cerrar">✕</button>
       </div>
       <div class="modal-body" id="modalBody">
-        <!-- Términos (puedes reemplazar/editar texto aquí) -->
         <p><strong>Última actualización:</strong> Noviembre 2025</p>
         <p>Bienvenido a MGWebCraft. Al acceder o utilizar nuestros servicios, aceptas los siguientes Términos de Servicio. Te recomendamos leerlos cuidadosamente antes de continuar.</p>
 
@@ -277,38 +312,112 @@
   </div>
 
   <script>
-    // Modal controls
+    /********** UI: steps & progress **********/
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const progress = document.getElementById('progressBar');
+    let current = 0; // index
+    function showStep(index){
+      steps.forEach((s,i)=> s.classList.toggle('active', i===index));
+      const pct = Math.round(((index+1)/steps.length)*100);
+      progress.style.width = pct+'%';
+    }
+    showStep(current);
+
+    // Buttons
+    document.getElementById('next1').addEventListener('click', ()=> {
+      // simple validation
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){ alert('Completa nombre y correo para continuar.'); return; }
+      current = 1; showStep(current);
+    });
+
+    document.getElementById('next2').addEventListener('click', ()=> { current = 2; showStep(current); });
+    document.getElementById('prev2').addEventListener('click', ()=> { current = 0; showStep(current); });
+    document.getElementById('prev3').addEventListener('click', ()=> { current = 1; showStep(current); });
+
+    /********** Modal controls **********/
     const modal = document.getElementById('modal');
     const openBtn = document.getElementById('openTerms');
     const closeBtn = document.getElementById('closeModal');
+    openBtn.addEventListener('click', ()=> { modal.classList.add('show'); document.body.style.overflow='hidden'; document.getElementById('modalBody').scrollTop=0; });
+    closeBtn.addEventListener('click', ()=> { modal.classList.remove('show'); document.body.style.overflow=''; });
+    modal.addEventListener('click', (e)=> { if(e.target===modal){ modal.classList.remove('show'); document.body.style.overflow=''; } });
+    document.addEventListener('keydown', (e)=> { if(e.key==='Escape' && modal.classList.contains('show')){ modal.classList.remove('show'); document.body.style.overflow=''; } });
 
-    openBtn.addEventListener('click', ()=> {
-      modal.classList.add('show');
-      // lock scroll on body
-      document.body.style.overflow = 'hidden';
-      // reset scroll inside modal body to top
-      document.getElementById('modalBody').scrollTop = 0;
-    });
+    /********** EmailJS init & send **********/
+    // REPLACE these with your EmailJS keys:
+    const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 
-    closeBtn.addEventListener('click', ()=> {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    });
-
-    // close by clicking outside the card
-    modal.addEventListener('click', (e)=>{
-      if(e.target === modal){
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
+    // Initialize EmailJS when library is available
+    function initEmailJS(){
+      try {
+        if(window.emailjs && typeof window.emailjs.init === 'function'){
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+          console.log('EmailJS initialized');
+        } else {
+          console.warn('EmailJS not ready yet');
+        }
+      } catch(err){
+        console.error('EmailJS init error', err);
       }
-    });
+    }
 
-    // Accessibility: close with ESC
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && modal.classList.contains('show')){
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
+    // Try init now and also later if not loaded
+    initEmailJS();
+    // If script not yet loaded, try again after short delay
+    if(!window.emailjs) {
+      const interval = setInterval(()=> {
+        if(window.emailjs){
+          initEmailJS();
+          clearInterval(interval);
+        }
+      }, 500);
+    }
+
+    // Form submit
+    const form = document.getElementById('mgForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // Disable submit while sending
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      // Check emailjs loaded
+      if(typeof emailjs === 'undefined'){
+        alert('EmailJS no está cargado todavía. Recarga la página o espera un momento.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar solicitud';
+        return;
       }
+
+      // Send form using EmailJS
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          formMsg.innerHTML = '<div class="success-msg">Solicitud enviada correctamente. Te contactaremos pronto.</div>';
+          submitBtn.textContent = 'Enviado';
+          submitBtn.disabled = true;
+          // optional: reset form after a few seconds
+          setTimeout(()=> {
+            form.reset();
+            current = 0; showStep(current);
+            submitBtn.textContent = 'Enviar solicitud';
+            submitBtn.disabled = false;
+            formMsg.innerHTML = '';
+          }, 3000);
+        }, function(error) {
+          console.error('FAILED...', error);
+          formMsg.innerHTML = '<div class="success-msg" style="background:rgba(255,200,0,0.06);border-color:rgba(255,200,0,0.12);color:#ffecb3">Hubo un error al enviar. Prueba recargando la página.</div>';
+          submitBtn.textContent = 'Enviar solicitud';
+          submitBtn.disabled = false;
+        });
     });
   </script>
 </body>
