@@ -1,217 +1,315 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MGWebCraft</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MGWebCraft — Bienvenido</title>
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e0e6ad75.js" crossorigin="anonymous"></script>
+
+  <!-- Favicon (reemplaza favicon.png por tu icono pequeño) -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
   <style>
-    body {
-      margin: 0;
-      background-color: #0B0D10;
-      color: #d4af37;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      overflow-x: hidden;
+    :root{
+      --bg:#0B0D10;
+      --gold:#d4af37;
+      --gold-bright:#ffd86b;
+      --card:#0f1113;
     }
 
-    img {
-      width: 180px;
-      height: auto;
-      margin-bottom: 20px;
-      animation: fadeUp 1.5s ease-in-out;
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;padding:0;background:var(--bg);font-family:'Montserrat',sans-serif;color:var(--gold);-webkit-font-smoothing:antialiased}
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+      flex-direction:column;
+      text-align:center;
+      gap:18px;
     }
 
-    h1 {
-      font-size: 1.8rem;
-      margin: 10px 0;
-      animation: fadeUp 2s ease-in-out;
+    /* Logo central */
+    .logo{
+      width:190px;
+      height:auto;
+      animation:fadeUp 1100ms cubic-bezier(.2,.9,.2,1) both;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+      border-radius:12px;
     }
 
-    p {
-      font-size: 1.1rem;
-      margin: 10px 0;
-      animation: fadeUp 2.3s ease-in-out;
+    h1{
+      margin:6px 0 0 0;
+      font-weight:800;
+      line-height:1.08;
+      font-size:1.9rem;
+      letter-spacing:-0.4px;
+      background: linear-gradient(90deg,var(--gold),var(--gold-bright));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 2px 6px rgba(0,0,0,0.5);
+      animation:fadeUp 1300ms cubic-bezier(.2,.9,.2,1) both;
     }
 
-    .contact {
-      margin-top: 25px;
-      display: flex;
-      gap: 20px;
-      animation: fadeUp 2.8s ease-in-out;
+    .subtitle{
+      max-width:760px;
+      margin:6px 0 0 0;
+      font-size:1.05rem;
+      color:rgba(212,175,55,0.95);
+      animation:fadeUp 1500ms cubic-bezier(.2,.9,.2,1) both;
     }
 
-    .contact a {
-      color: #d4af37;
-      font-size: 1.7rem;
-      text-decoration: none;
-      transition: transform 0.3s ease, color 0.3s ease;
+    .call{
+      margin-top:6px;
+      font-weight:600;
+      font-size:1rem;
+      color:var(--gold);
+      animation:fadeUp 1700ms cubic-bezier(.2,.9,.2,1) both;
     }
 
-    .contact a:hover {
-      color: #FFD700;
-      transform: scale(1.15);
+    /* Contact row */
+    .contact{
+      margin-top:20px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      animation:fadeUp 1900ms cubic-bezier(.2,.9,.2,1) both;
     }
 
-    .terms-btn {
-      margin-top: 40px;
-      background: transparent;
-      border: 2px solid #d4af37;
-      color: #d4af37;
-      padding: 10px 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      animation: fadeUp 3s ease-in-out;
+    .icon-btn{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      background:transparent;
+      border:1px solid rgba(212,175,55,0.12);
+      padding:10px 16px;
+      border-radius:12px;
+      color:var(--gold);
+      text-decoration:none;
+      transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+      backdrop-filter: blur(2px);
     }
 
-    .terms-btn:hover {
-      background-color: #d4af37;
-      color: #0B0D10;
-      transform: scale(1.05);
+    .icon-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(212,175,55,0.06);
+      background:linear-gradient(180deg, rgba(212,175,55,0.04), rgba(212,175,55,0.02));
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .icon-wrap{
+      width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04));
+      box-shadow:0 6px 18px rgba(0,0,0,0.5) inset;
     }
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(11, 13, 16, 0.95);
-      justify-content: center;
-      align-items: center;
-      color: #d4af37;
-      overflow: hidden;
+    .icon-svg{width:20px;height:20px;fill:var(--gold);}
+
+    .contact .text{
+      font-size:0.98rem;color:var(--gold);font-weight:600;
+    }
+
+    /* Términos button final */
+    .terms-btn{
+      margin-top:28px;
+      border:2px solid var(--gold);
+      background:transparent;
+      color:var(--gold);
+      padding:10px 22px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+      transition:all .18s ease;
+    }
+
+    .terms-btn:hover{background:var(--gold);color:var(--bg);transform:scale(1.03)}
+
+    footer{
+      margin-top:36px;color:rgba(212,175,55,0.14);font-size:0.86rem;
+    }
+
+    /* Animations */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(22px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* Modal (pantalla completa con scroll interno) */
+    .modal{
+      display:none;
+      position:fixed;inset:0;z-index:1200;align-items:center;justify-content:center;
+      background:linear-gradient(180deg, rgba(2,2,2,0.6), rgba(2,2,2,0.8));
       backdrop-filter: blur(6px);
+      padding:28px;
     }
 
-    .modal-content {
-      background-color: #111317;
-      border: 1px solid #d4af37;
-      padding: 30px;
-      width: 85%;
-      max-width: 800px;
-      height: 80%;
-      overflow-y: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 25px rgba(212,175,55,0.3);
-      text-align: left;
+    .modal.show{display:flex}
+
+    .modal-card{
+      width:100%;max-width:980px;background:var(--card);border:1px solid rgba(212,175,55,0.15);
+      border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6);overflow:hidden;
+      display:flex;flex-direction:column;height:86vh;
     }
 
-    .close {
-      color: #d4af37;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
+    .modal-head{
+      padding:18px 22px;border-bottom:1px solid rgba(212,175,55,0.04);display:flex;align-items:center;justify-content:space-between;
     }
 
-    .close:hover {
-      color: #FFD700;
+    .modal-head h2{margin:0;font-size:1.15rem;color:var(--gold);}
+
+    .close-btn{
+      background:transparent;border:none;color:var(--gold);font-size:22px;cursor:pointer;padding:8px 12px;border-radius:8px;
+    }
+    .close-btn:hover{color:var(--gold-bright);background:rgba(255,216,107,0.03)}
+
+    .modal-body{
+      padding:22px 28px;overflow-y:auto;color:rgba(212,175,55,0.95);font-size:0.98rem;line-height:1.55;
     }
 
-    h2 {
-      text-align: center;
-    }
+    .modal-body h3{color:var(--gold);margin-top:18px;margin-bottom:8px}
 
-    footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #777;
+    /* Responsive */
+    @media (max-width:640px){
+      h1{font-size:1.4rem}
+      .logo{width:150px}
+      .modal-body{padding:18px}
+      .modal-card{height:84vh}
     }
   </style>
 </head>
 <body>
+  <main class="wrap" role="main" aria-labelledby="welcomeTitle">
 
-  <img src="logo.png" alt="Logo MGWebCraft">
+    <!-- Logo: reemplaza logo.png con tu archivo -->
+    <img src="logo.png" alt="MGWebCraft logo" class="logo" id="logo">
 
-  <h1>Bienvenido a MGWebCraft.<br>Donde las ideas de tu negocio se convierten en sitios web reales.</h1>
-  <p>Solo dinos quién eres, qué haces y qué te hace especial — nosotros nos encargamos del resto.</p>
-  <p><strong>Tu presencia online empieza aquí!</strong></p>
+    <h1 id="welcomeTitle">Bienvenido a MGWebCraft.<br>Donde las ideas de tu negocio se convierten en sitios web reales.</h1>
 
-  <div class="contact">
-    <a href="https://wa.me/526567471956" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.instagram.com/mgwebcraft?igsh=eTI3d2Z1YzlnY3Vh" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="mailto:mgwebcraft@gmail.com"><i class="fas fa-envelope"></i></a>
-  </div>
+    <p class="subtitle">Solo dinos quién eres, qué haces y qué te hace especial — nosotros nos encargamos del resto.</p>
 
-  <button class="terms-btn" id="openTerms">Términos de Servicio</button>
+    <p class="call"><strong>Tu presencia online empieza aquí!</strong></p>
 
-  <!-- Modal de Términos -->
-  <div id="termsModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h2>Términos de Servicio — MGWebCraft</h2>
-      <p><strong>Última actualización:</strong> Noviembre 2025</p>
-      <p>Bienvenido a MGWebCraft. Al acceder o utilizar nuestros servicios, aceptas los siguientes Términos de Servicio. Te recomendamos leerlos cuidadosamente antes de continuar.</p>
+    <!-- Contact row: icon + texto -->
+    <div class="contact" role="region" aria-label="Contactos">
+      <!-- WhatsApp -->
+      <a class="icon-btn" href="https://wa.me/526567471956" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <span class="icon-wrap" aria-hidden="true">
+          <!-- WhatsApp SVG -->
+          <svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 48C141.1 48 48 141.1 48 256c0 45 12 86.8 33.6 123.6L32 448l71.1-15.8C150.9 433.9 202.8 448 256 448 370.9 448 464 354.9 464 240S370.9 48 256 48zm116 296.5c-5.7 15.9-32.4 32.1-44.6 34.1-11.9 1.9-28.6 2.7-85.4-19.3-68.7-24.9-112.6-86.8-116-91.7-3.4-4.8-28.3-40.9-28.3-78.1 0-37.3 19.8-55.7 26.8-63.4 6.9-7.7 15.2-9.8 20.8-9.8 5.4 0 10.9.1 15.7.2 5 .1 11.6-1.9 18 13.9 6.4 15.8 21.6 54.6 23.6 58.6 2 4 3.3 8.8 0 14.1-3.4 5.4-5.1 8.8-10 14-4.9 5.3-10.1 9.5-6.8 15.9 3.3 6.4 14.6 23.8 31.2 38.2 16.7 14.4 29.6 18.6 46.3 13 .7-.2 3.9-1.1 8.6-2.8 9.1-3.3 54.3-25 63.6-27.8 9.3-2.8 15.6-4.2 17.9-6.6 2.3-2.4 2.3-5.6 1.6-8.1-0.7-2.5-4.1-8.3-6.6-12.1z"/></svg>
+        </span>
+        <span class="text">+52 656 747 1956</span>
+      </a>
 
-      <h3>1. Definiciones</h3>
-      <p>“MGWebCraft” se refiere a nuestro equipo y plataforma de diseño web. “Cliente” o “Usuario” se refiere a cualquier persona o empresa que contrata nuestros servicios o utiliza nuestro sitio web. “Sitio web” se refiere al proyecto digital desarrollado para el cliente por MGWebCraft.</p>
+      <!-- Instagram -->
+      <a class="icon-btn" href="https://www.instagram.com/mgwebcraft?igsh=eTI3d2Z1YzlnY3Vh" target="_blank" rel="noopener" aria-label="Instagram">
+        <span class="icon-wrap" aria-hidden="true">
+          <!-- Instagram SVG -->
+          <svg class="icon-svg" viewBox="0 0 169.063 169.063" xmlns="http://www.w3.org/2000/svg"><path d="M122.406 0H46.657C20.924 0 0 20.924 0 46.657v75.749c0 25.733 20.924 46.657 46.657 46.657h75.749c25.733 0 46.657-20.924 46.657-46.657V46.657C169.063 20.924 148.139 0 122.406 0zm-37.203 129.125c-21.171 0-38.38-17.209-38.38-38.38 0-21.172 17.209-38.381 38.38-38.381 21.171 0 38.38 17.209 38.38 38.381 0 21.171-17.209 38.38-38.38 38.38zm38.706-71.3c-4.953 0-8.969-4.016-8.969-8.969 0-4.953 4.016-8.968 8.969-8.968 4.953 0 8.968 4.015 8.968 8.968 0 4.953-4.015 8.969-8.968 8.969z"/></svg>
+        </span>
+        <span class="text">@mgwebcraft</span>
+      </a>
 
-      <h3>2. Servicios</h3>
-      <p>MGWebCraft ofrece servicios de diseño y desarrollo de sitios web personalizados, integración de formularios, pasarelas de pago y dominios, además de mantenimiento, optimización y soporte técnico.</p>
+      <!-- Email -->
+      <a class="icon-btn" href="mailto:mgwebcraft@gmail.com" aria-label="Email">
+        <span class="icon-wrap" aria-hidden="true">
+          <!-- Mail SVG -->
+          <svg class="icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M467 61H45C20.186 61 0 81.186 0 106v300c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V106c0-24.814-20.186-45-45-45zM256 291L45 123h422L256 291z"/></svg>
+        </span>
+        <span class="text">mgwebcraft@gmail.com</span>
+      </a>
+    </div>
 
-      <h3>3. Pagos</h3>
-      <p>Todos los precios se expresan en dólares estadounidenses (USD). El 50% del costo total debe abonarse antes de iniciar el proyecto, y el resto al entregarse el sitio. No se realizan reembolsos una vez iniciado el desarrollo.</p>
+    <button class="terms-btn" id="openTerms">Términos de Servicio</button>
 
-      <h3>4. Propiedad del sitio web</h3>
-      <p>El cliente obtiene plenos derechos sobre su sitio web una vez realizado el pago total.</p>
+    <footer aria-hidden="false">© 2025 MGWebCraft — Todos los derechos reservados.</footer>
+  </main>
 
-      <h3>5. Plazos de entrega</h3>
-      <p>Los tiempos de entrega se acuerdan según la complejidad del proyecto. MGWebCraft no será responsable por retrasos ocasionados por falta de contenido o cambios de último momento.</p>
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <h2 id="modalTitle">Términos de Servicio — MGWebCraft</h2>
+        <button class="close-btn" id="closeModal" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Términos (puedes reemplazar/editar texto aquí) -->
+        <p><strong>Última actualización:</strong> Noviembre 2025</p>
+        <p>Bienvenido a MGWebCraft. Al acceder o utilizar nuestros servicios, aceptas los siguientes Términos de Servicio. Te recomendamos leerlos cuidadosamente antes de continuar.</p>
 
-      <h3>6. Responsabilidad del cliente</h3>
-      <p>El cliente se compromete a proporcionar información veraz y no solicitar contenido ilegal o que infrinja derechos de terceros.</p>
+        <h3>1. Definiciones</h3>
+        <p>“MGWebCraft” se refiere a nuestro equipo y plataforma de diseño web. “Cliente” o “Usuario” se refiere a cualquier persona o empresa que contrata nuestros servicios o utiliza nuestro sitio web. “Sitio web” se refiere al proyecto digital desarrollado para el cliente por MGWebCraft.</p>
 
-      <h3>7. Mantenimiento y soporte</h3>
-      <p>Los planes de mantenimiento incluyen actualizaciones técnicas menores, copias de seguridad y optimización básica.</p>
+        <h3>2. Servicios</h3>
+        <p>MGWebCraft ofrece servicios de diseño y desarrollo de sitios web personalizados, integración de formularios, pasarelas de pago y dominios, además de mantenimiento, optimización y soporte técnico.</p>
 
-      <h3>8. Privacidad y seguridad</h3>
-      <p>MGWebCraft protege la información personal de cada cliente y no la comparte con terceros sin autorización.</p>
+        <h3>3. Pagos</h3>
+        <p>Todos los precios se expresan en dólares estadounidenses (USD). El 50% del costo total debe abonarse antes de iniciar el proyecto, y el resto al entregarse el sitio. No se realizan reembolsos una vez iniciado el desarrollo.</p>
 
-      <h3>9. Limitación de responsabilidad</h3>
-      <p>MGWebCraft no se hace responsable de pérdidas de datos, ataques informáticos o daños derivados del uso del sitio una vez aprobado por el cliente.</p>
+        <h3>4. Propiedad del sitio web</h3>
+        <p>El cliente obtiene plenos derechos sobre su sitio web una vez realizado el pago total.</p>
 
-      <h3>10. Modificaciones</h3>
-      <p>MGWebCraft puede actualizar estos términos en cualquier momento. Las nuevas versiones entrarán en vigor desde su publicación en nuestro sitio web.</p>
+        <h3>5. Plazos de entrega</h3>
+        <p>Los tiempos de entrega se acuerdan según la complejidad del proyecto. MGWebCraft no será responsable por retrasos ocasionados por falta de contenido o cambios de último momento.</p>
 
-      <h3>11. Contacto</h3>
-      <p>📧 mgwebcraft@gmail.com<br>🌐 www.mgwebcraft.org</p>
+        <h3>6. Responsabilidad del cliente</h3>
+        <p>El cliente se compromete a proporcionar información veraz y no solicitar contenido ilegal o que infrinja derechos de terceros.</p>
+
+        <h3>7. Mantenimiento y soporte</h3>
+        <p>Los planes de mantenimiento incluyen actualizaciones técnicas menores, copias de seguridad y optimización básica.</p>
+
+        <h3>8. Privacidad y seguridad</h3>
+        <p>MGWebCraft protege la información personal de cada cliente y no la comparte con terceros sin autorización.</p>
+
+        <h3>9. Limitación de responsabilidad</h3>
+        <p>MGWebCraft no se hace responsable de pérdidas de datos, ataques informáticos o daños derivados del uso del sitio una vez aprobado por el cliente.</p>
+
+        <h3>10. Modificaciones</h3>
+        <p>MGWebCraft puede actualizar estos términos en cualquier momento. Las nuevas versiones entrarán en vigor desde su publicación en nuestro sitio web.</p>
+
+        <h3>11. Contacto</h3>
+        <p>📧 mgwebcraft@gmail.com<br>📱 +52 656 747 1956<br>📸 <a href="https://www.instagram.com/mgwebcraft?igsh=eTI3d2Z1YzlnY3Vh" target="_blank" style="color:var(--gold)">@mgwebcraft</a></p>
+      </div>
     </div>
   </div>
 
-  <footer>© 2025 MGWebCraft. Todos los derechos reservados.</footer>
-
   <script>
-    const modal = document.getElementById("termsModal");
-    const openBtn = document.getElementById("openTerms");
-    const closeBtn = document.getElementById("closeModal");
+    // Modal controls
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('openTerms');
+    const closeBtn = document.getElementById('closeModal');
 
-    openBtn.onclick = () => modal.style.display = "flex";
-    closeBtn.onclick = () => modal.style.display = "none";
-    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+    openBtn.addEventListener('click', ()=> {
+      modal.classList.add('show');
+      // lock scroll on body
+      document.body.style.overflow = 'hidden';
+      // reset scroll inside modal body to top
+      document.getElementById('modalBody').scrollTop = 0;
+    });
+
+    closeBtn.addEventListener('click', ()=> {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+
+    // close by clicking outside the card
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal){
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Accessibility: close with ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('show')){
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
   </script>
-
 </body>
 </html>
